@@ -3,7 +3,11 @@
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCopy } from "@/registry/default/hooks/use-copy";
-import { shortenAddress } from "@/registry/default/lib/utils";
+
+const shortenAddress = (address: string = ""): string =>
+  address.length > 9
+    ? `${address.slice(0, 6)}...${address.slice(-4)}`
+    : address;
 
 const WalletAddress01 = () => {
   const { copied, copy } = useCopy();
