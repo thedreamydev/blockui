@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "components/wallet-address-01.tsx",
-      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { useCopy } from \"@/registry/hooks/use-copy\";\r\nimport { shortenAddress } from \"@/registry/lib/utils\";\r\nimport { Check, Copy } from \"lucide-react\";\r\n\r\nconst WalletAddress01 = () => {\r\n  const { copied, copy } = useCopy();\r\n\r\n  const address = \"0x1F6Ac473bfE26A84AcF4e255156B7816245b17aa\";\r\n  const shortenedAddress = shortenAddress(address);\r\n\r\n  return (\r\n    <div>\r\n      {shortenedAddress}\r\n\r\n      <Button variant=\"ghost\" onClick={() => copy(address)}>\r\n        {copied ? <Check /> : <Copy />}\r\n      </Button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default WalletAddress01;\r\n",
+      "content": "\"use client\";\r\n\r\nimport { Check, Copy } from \"lucide-react\";\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { useCopy } from \"@/registry/default/hooks/use-copy\";\r\nimport { shortenAddress } from \"@/registry/default/lib/utils\";\r\n\r\nconst WalletAddress01 = () => {\r\n  const { copied, copy } = useCopy();\r\n\r\n  const address = \"0x1F6Ac473bfE26A84AcF4e255156B7816245b17aa\";\r\n  const shortenedAddress = shortenAddress(address);\r\n\r\n  return (\r\n    <div>\r\n      {shortenedAddress}\r\n\r\n      <Button variant=\"ghost\" onClick={() => copy(address)}>\r\n        {copied ? <Check /> : <Copy />}\r\n      </Button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default WalletAddress01;\r\n",
       "type": "registry:component",
       "target": ""
     },

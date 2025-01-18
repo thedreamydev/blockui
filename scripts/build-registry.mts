@@ -58,7 +58,7 @@ async function buildStyles(registry: Registry) {
           let content: string;
           try {
             content = await fs.readFile(
-              path.join(process.cwd(), "registry", file.path),
+              path.join(process.cwd(), "registry", "default", file.path),
               "utf8"
             );
           } catch (error) {
