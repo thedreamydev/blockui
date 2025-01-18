@@ -15,6 +15,10 @@ export const components: Registry = [
         path: "hooks/use-copy.ts",
         type: "registry:hook",
       },
+      {
+        path: "lib/utils.ts",
+        type: "registry:lib",
+      },
     ],
   },
 ];
