@@ -1,0 +1,13 @@
+{
+  "name": "utils",
+  "type": "registry:lib",
+  "dependencies": ["clsx", "tailwind-merge"],
+  "files": [
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\";\r\nimport { twMerge } from \"tailwind-merge\";\r\n\r\nexport function cn(...inputs: ClassValue[]) {\r\n  return twMerge(clsx(inputs));\r\n}\r\n\r\n/**\r\n * Shortens a wallet address to a more readable format.\r\n *\r\n * @param {string} address - The wallet address to shorten. Defaults to an empty string if not provided.\r\n * @returns {string} - The shortened address or the original address if it's 9 characters or fewer.\r\n *\r\n * Example:\r\n *   shortenAddress(\"0x1234567890abcdef1234567890abcdef12345678\")\r\n *   returns \"0x1234...678\"\r\n */\r\nexport function shortenAddress(address: string = \"\"): string {\r\n  return address.length > 9\r\n    ? `${address.slice(0, 6)}...${address.slice(-4)}`\r\n    : address;\r\n}\r\n",
+      "type": "registry:lib",
+      "target": ""
+    }
+  ]
+}

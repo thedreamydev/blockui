@@ -1,0 +1,24 @@
+{
+  "name": "wallet-address-01",
+  "type": "registry:component",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/wallet-address-01.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { useCopy } from \"@/registry/hooks/use-copy\";\r\nimport { shortenAddress } from \"@/registry/lib/utils\";\r\nimport { Check, Copy } from \"lucide-react\";\r\n\r\nconst WalletAddress01 = () => {\r\n  const { copied, copy } = useCopy();\r\n\r\n  const address = \"0x1F6Ac473bfE26A84AcF4e255156B7816245b17aa\";\r\n  const shortenedAddress = shortenAddress(address);\r\n\r\n  return (\r\n    <div>\r\n      {shortenedAddress}\r\n\r\n      <Button variant=\"ghost\" onClick={() => copy(address)}>\r\n        {copied ? <Check /> : <Copy />}\r\n      </Button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default WalletAddress01;\r\n",
+      "type": "registry:component",
+      "target": ""
+    },
+    {
+      "path": "hooks/use-copy.ts",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\ntype UseCopyReturn = {\r\n  copied: boolean;\r\n  copy: (text: string) => Promise<boolean>;\r\n};\r\n\r\nexport function useCopy(duration = 1500): UseCopyReturn {\r\n  const [copied, setCopied] = useState<boolean>(false);\r\n\r\n  const copy = async (text: string) => {\r\n    try {\r\n      await navigator.clipboard.writeText(text);\r\n      setCopied(true);\r\n      setTimeout(() => setCopied(false), duration);\r\n      return true;\r\n    } catch (err) {\r\n      console.error(\"Failed to copy text: \", err);\r\n      return false;\r\n    }\r\n  };\r\n\r\n  return {\r\n    copied,\r\n    copy,\r\n  };\r\n}\r\n",
+      "type": "registry:hook",
+      "target": ""
+    }
+  ]
+}
