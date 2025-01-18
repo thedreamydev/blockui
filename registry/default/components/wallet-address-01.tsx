@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useCopy } from "@/registry/hooks/use-copy";
-import { shortenAddress } from "@/registry/lib/utils";
 import { Check, Copy } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useCopy } from "@/registry/default/hooks/use-copy";
+import { shortenAddress } from "@/registry/default/lib/utils";
 
 const WalletAddress01 = () => {
   const { copied, copy } = useCopy();
