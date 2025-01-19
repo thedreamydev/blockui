@@ -11,4 +11,14 @@ export const hooks: Registry = [
       },
     ],
   },
+  {
+    name: "use-gradient-colors",
+    type: "registry:hook",
+    files: [
+      {
+        path: "hooks/use-gradient-colors.ts",
+        type: "registry:hook",
+      },
+    ],
+  },
 ];

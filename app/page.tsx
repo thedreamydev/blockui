@@ -45,7 +45,7 @@ export default function Page() {
               <ul className="flex flex-col gap-2">
                 <li>
                   <Link
-                    href="/inputs"
+                    href="/wallet-address"
                     className="inline-flex w-full items-center justify-between whitespace-nowrap rounded-lg border border-border bg-background p-4 font-bold shadow-sm shadow-black/5 outline-offset-2 transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:opacity-50 sm:h-14"
                   >
                     <span className="truncate">Wallet Address</span>

@@ -1,16 +1,14 @@
 {
   "name": "wallet-address-01",
   "type": "registry:component",
-  "dependencies": [
-    "lucide-react"
-  ],
   "registryDependencies": [
-    "button"
+    "button",
+    "tooltip"
   ],
   "files": [
     {
       "path": "components/wallet-address-01.tsx",
-      "content": "\"use client\";\r\n\r\nimport { Check, Copy } from \"lucide-react\";\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { useCopy } from \"@/registry/default/hooks/use-copy\";\r\n\r\nconst shortenAddress = (address: string = \"\"): string =>\r\n  address.length > 9\r\n    ? `${address.slice(0, 6)}...${address.slice(-4)}`\r\n    : address;\r\n\r\nconst WalletAddress01 = () => {\r\n  const { copied, copy } = useCopy();\r\n\r\n  const address = \"0x1F6Ac473bfE26A84AcF4e255156B7816245b17aa\";\r\n  const shortenedAddress = shortenAddress(address);\r\n\r\n  return (\r\n    <div>\r\n      {shortenedAddress}\r\n\r\n      <Button variant=\"ghost\" onClick={() => copy(address)}>\r\n        {copied ? <Check /> : <Copy />}\r\n      </Button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default WalletAddress01;\r\n",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\nimport { Button } from \"@/components/ui/button\";\r\nimport {\r\n  TooltipProvider,\r\n  Tooltip,\r\n  TooltipTrigger,\r\n  TooltipContent,\r\n} from \"@/components/ui/tooltip\";\r\nimport { useCopy } from \"@/registry/default/hooks/use-copy\";\r\n\r\nconst shortenAddress = (address: string = \"\"): string =>\r\n  address.length > 9\r\n    ? `${address.slice(0, 6)}...${address.slice(-4)}`\r\n    : address;\r\n\r\nconst WalletAddress01 = () => {\r\n  // managing tooltip state manually for keeping tooltip open even after button click\r\n  const [isOpen, setIsOpen] = useState(false);\r\n\r\n  const { copied, copy } = useCopy();\r\n\r\n  const address = \"0x1F6Ac473bfE26A84AcF4e255156B7816245b17aa\";\r\n  const shortenedAddress = shortenAddress(address);\r\n\r\n  return (\r\n    <TooltipProvider delayDuration={500}>\r\n      <Tooltip open={isOpen} onOpenChange={(open) => setIsOpen(open)}>\r\n        <TooltipTrigger\r\n          onMouseEnter={() => setIsOpen(true)}\r\n          onMouseLeave={() => setIsOpen(false)}\r\n          onClick={(e) => {\r\n            e.preventDefault();\r\n            setIsOpen(true);\r\n            copy(address);\r\n          }}\r\n          asChild\r\n        >\r\n          <Button variant=\"ghost\">{shortenedAddress}</Button>\r\n        </TooltipTrigger>\r\n        <TooltipContent className=\"pointer-events-none px-2 py-1 text-xs\">\r\n          <p>{copied ? \"Copied!\" : \"Copy\"}</p>\r\n        </TooltipContent>\r\n      </Tooltip>\r\n    </TooltipProvider>\r\n  );\r\n};\r\n\r\nexport default WalletAddress01;\r\n",
       "type": "registry:component",
       "target": ""
     },

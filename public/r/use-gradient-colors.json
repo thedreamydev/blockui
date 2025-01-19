@@ -1,0 +1,12 @@
+{
+  "name": "use-gradient-colors",
+  "type": "registry:hook",
+  "files": [
+    {
+      "path": "hooks/use-gradient-colors.ts",
+      "content": "import { useMemo } from \"react\";\r\n\r\n/**\r\n * Custom hook to generate an array of gradient colors based on the given address.\r\n * Each color is derived by hashing segments of the address string.\r\n *\r\n * @param {string} address - The input string used to generate the colors.\r\n * @returns {string[]} An array of RGB color strings.\r\n */\r\nexport function useGradientColors(address: string): string[] {\r\n  if (!address) {\r\n    throw new Error(\"Address is required to generate colors.\");\r\n  }\r\n\r\n  // Memoize the gradient colors for performance optimization\r\n  return useMemo(() => {\r\n    // Extract up to 5 seed strings from the address\r\n    const seedArr = address.match(/.{1,7}/g)?.slice(0, 5);\r\n\r\n    if (!seedArr || seedArr.length < 5) {\r\n      throw new Error(\r\n        \"Address must be long enough to generate sufficient gradient colors.\"\r\n      );\r\n    }\r\n\r\n    // Generate an array of colors based on the seed array\r\n    return seedArr.map((seed) => {\r\n      let hash = 0;\r\n\r\n      // Create a hash from the seed string\r\n      for (let i = 0; i < seed.length; i++) {\r\n        hash = seed.charCodeAt(i) + ((hash << 5) - hash);\r\n        hash &= hash; // Convert to a 32-bit integer\r\n      }\r\n\r\n      // Generate RGB values from the hash\r\n      const rgb = Array.from({ length: 3 }, (_, i) => (hash >> (i * 8)) & 255);\r\n      return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;\r\n    });\r\n  }, [address]); // Dependencies array ensures the colors are recalculated only when the address changes\r\n}\r\n",
+      "type": "registry:hook",
+      "target": ""
+    }
+  ]
+}

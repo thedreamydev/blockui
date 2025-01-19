@@ -1,0 +1,31 @@
+{
+  "name": "wallet-address-04",
+  "type": "registry:component",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "dropdown-menu"
+  ],
+  "files": [
+    {
+      "path": "components/wallet-address-02.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Check, Copy } from \"lucide-react\";\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { cn } from \"@/registry/default/lib/utils\";\r\nimport { useCopy } from \"@/registry/default/hooks/use-copy\";\r\n\r\nconst shortenAddress = (address: string = \"\"): string =>\r\n  address.length > 9\r\n    ? `${address.slice(0, 6)}...${address.slice(-4)}`\r\n    : address;\r\n\r\nconst WalletAddress02 = () => {\r\n  const { copied, copy } = useCopy();\r\n\r\n  const address = \"0x1F6Ac473bfE26A84AcF4e255156B7816245b17aa\";\r\n  const shortenedAddress = shortenAddress(address);\r\n\r\n  return (\r\n    <div className=\"flex items-center gap-2\">\r\n      <p className=\"text-sm font-medium\">{shortenedAddress}</p>\r\n\r\n      <Button\r\n        variant=\"ghost\"\r\n        size=\"icon\"\r\n        className=\"size-5 p-1 hover:bg-transparent text-muted-foreground\"\r\n        onClick={() => copy(address)}\r\n      >\r\n        <div\r\n          className={cn(\r\n            \"transition-all\",\r\n            copied ? \"scale-100 opacity-100\" : \"scale-0 opacity-0\"\r\n          )}\r\n        >\r\n          <Check color=\"#10B981\" />\r\n        </div>\r\n        <div\r\n          className={cn(\r\n            \"absolute transition-all\",\r\n            copied ? \"scale-0 opacity-0\" : \"scale-100 opacity-100\"\r\n          )}\r\n        >\r\n          <Copy />\r\n        </div>\r\n      </Button>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default WalletAddress02;\r\n",
+      "type": "registry:component",
+      "target": ""
+    },
+    {
+      "path": "hooks/use-copy.ts",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\ntype UseCopyReturn = {\r\n  copied: boolean;\r\n  copy: (text: string) => Promise<boolean>;\r\n};\r\n\r\nexport function useCopy(duration = 1500): UseCopyReturn {\r\n  const [copied, setCopied] = useState<boolean>(false);\r\n\r\n  const copy = async (text: string) => {\r\n    try {\r\n      await navigator.clipboard.writeText(text);\r\n      setCopied(true);\r\n      setTimeout(() => setCopied(false), duration);\r\n      return true;\r\n    } catch (err) {\r\n      console.error(\"Failed to copy text: \", err);\r\n      return false;\r\n    }\r\n  };\r\n\r\n  return {\r\n    copied,\r\n    copy,\r\n  };\r\n}\r\n",
+      "type": "registry:hook",
+      "target": ""
+    },
+    {
+      "path": "hooks/use-gradient-colors.ts",
+      "content": "import { useMemo } from \"react\";\r\n\r\n/**\r\n * Custom hook to generate an array of gradient colors based on the given address.\r\n * Each color is derived by hashing segments of the address string.\r\n *\r\n * @param {string} address - The input string used to generate the colors.\r\n * @returns {string[]} An array of RGB color strings.\r\n */\r\nexport function useGradientColors(address: string): string[] {\r\n  if (!address) {\r\n    throw new Error(\"Address is required to generate colors.\");\r\n  }\r\n\r\n  // Memoize the gradient colors for performance optimization\r\n  return useMemo(() => {\r\n    // Extract up to 5 seed strings from the address\r\n    const seedArr = address.match(/.{1,7}/g)?.slice(0, 5);\r\n\r\n    if (!seedArr || seedArr.length < 5) {\r\n      throw new Error(\r\n        \"Address must be long enough to generate sufficient gradient colors.\"\r\n      );\r\n    }\r\n\r\n    // Generate an array of colors based on the seed array\r\n    return seedArr.map((seed) => {\r\n      let hash = 0;\r\n\r\n      // Create a hash from the seed string\r\n      for (let i = 0; i < seed.length; i++) {\r\n        hash = seed.charCodeAt(i) + ((hash << 5) - hash);\r\n        hash &= hash; // Convert to a 32-bit integer\r\n      }\r\n\r\n      // Generate RGB values from the hash\r\n      const rgb = Array.from({ length: 3 }, (_, i) => (hash >> (i * 8)) & 255);\r\n      return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;\r\n    });\r\n  }, [address]); // Dependencies array ensures the colors are recalculated only when the address changes\r\n}\r\n",
+      "type": "registry:hook",
+      "target": ""
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "wallet-address-03",
+  "type": "registry:component",
+  "registryDependencies": [
+    "button",
+    "tooltip"
+  ],
+  "files": [
+    {
+      "path": "components/wallet-address-03.tsx",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\nimport { Button } from \"@/components/ui/button\";\r\nimport {\r\n  TooltipProvider,\r\n  Tooltip,\r\n  TooltipTrigger,\r\n  TooltipContent,\r\n} from \"@/components/ui/tooltip\";\r\nimport { useCopy } from \"@/registry/default/hooks/use-copy\";\r\nimport { useGradientColors } from \"@/registry/default/hooks/use-gradient-colors\";\r\n\r\nconst shortenAddress = (address: string = \"\"): string =>\r\n  address.length > 9\r\n    ? `${address.slice(0, 6)}...${address.slice(-4)}`\r\n    : address;\r\n\r\nconst WalletAddress03 = () => {\r\n  // managing tooltip state manually for keeping tooltip open even after button click\r\n  const [isOpen, setIsOpen] = useState(false);\r\n\r\n  const { copied, copy } = useCopy();\r\n\r\n  const address = \"0x1F6Ac473bfE26A84AcF4e255156B7816245b17aa\";\r\n  const shortenedAddress = shortenAddress(address);\r\n\r\n  const gradientColors = useGradientColors(address);\r\n\r\n  return (\r\n    <TooltipProvider delayDuration={500}>\r\n      <Tooltip open={isOpen} onOpenChange={(open) => setIsOpen(open)}>\r\n        <TooltipTrigger\r\n          onMouseEnter={() => setIsOpen(true)}\r\n          onMouseLeave={() => setIsOpen(false)}\r\n          onClick={(e) => {\r\n            e.preventDefault();\r\n            setIsOpen(true);\r\n            copy(address);\r\n          }}\r\n          asChild\r\n        >\r\n          <Button variant=\"ghost\">\r\n            <div className=\"flex items-center gap-2\">\r\n              <div\r\n                className=\"rounded-full\"\r\n                style={{\r\n                  width: \"1.25rem\",\r\n                  height: \"1.25rem\",\r\n                  boxShadow: \"inset 0 0 0 1px rgba(0, 0, 0, 0.1)\",\r\n                  backgroundColor: gradientColors[0],\r\n                  backgroundImage: `\r\n                  radial-gradient(at 66% 77%, ${gradientColors[1]} 0px, transparent 50%),\r\n                  radial-gradient(at 29% 97%, ${gradientColors[2]} 0px, transparent 50%),\r\n                  radial-gradient(at 99% 86%, ${gradientColors[3]} 0px, transparent 50%),\r\n                  radial-gradient(at 29% 88%, ${gradientColors[4]} 0px, transparent 50%)\r\n                `,\r\n                }}\r\n              />\r\n              <p className=\"flex items-center text-base\">{shortenedAddress}</p>\r\n            </div>\r\n          </Button>\r\n        </TooltipTrigger>\r\n        <TooltipContent className=\"pointer-events-none px-2 py-1 text-xs\">\r\n          <p>{copied ? \"Copied!\" : \"Copy\"}</p>\r\n        </TooltipContent>\r\n      </Tooltip>\r\n    </TooltipProvider>\r\n  );\r\n};\r\n\r\nexport default WalletAddress03;\r\n",
+      "type": "registry:component",
+      "target": ""
+    },
+    {
+      "path": "hooks/use-copy.ts",
+      "content": "\"use client\";\r\n\r\nimport { useState } from \"react\";\r\n\r\ntype UseCopyReturn = {\r\n  copied: boolean;\r\n  copy: (text: string) => Promise<boolean>;\r\n};\r\n\r\nexport function useCopy(duration = 1500): UseCopyReturn {\r\n  const [copied, setCopied] = useState<boolean>(false);\r\n\r\n  const copy = async (text: string) => {\r\n    try {\r\n      await navigator.clipboard.writeText(text);\r\n      setCopied(true);\r\n      setTimeout(() => setCopied(false), duration);\r\n      return true;\r\n    } catch (err) {\r\n      console.error(\"Failed to copy text: \", err);\r\n      return false;\r\n    }\r\n  };\r\n\r\n  return {\r\n    copied,\r\n    copy,\r\n  };\r\n}\r\n",
+      "type": "registry:hook",
+      "target": ""
+    },
+    {
+      "path": "hooks/use-gradient-colors.ts",
+      "content": "import { useMemo } from \"react\";\r\n\r\n/**\r\n * Custom hook to generate an array of gradient colors based on the given address.\r\n * Each color is derived by hashing segments of the address string.\r\n *\r\n * @param {string} address - The input string used to generate the colors.\r\n * @returns {string[]} An array of RGB color strings.\r\n */\r\nexport function useGradientColors(address: string): string[] {\r\n  if (!address) {\r\n    throw new Error(\"Address is required to generate colors.\");\r\n  }\r\n\r\n  // Memoize the gradient colors for performance optimization\r\n  return useMemo(() => {\r\n    // Extract up to 5 seed strings from the address\r\n    const seedArr = address.match(/.{1,7}/g)?.slice(0, 5);\r\n\r\n    if (!seedArr || seedArr.length < 5) {\r\n      throw new Error(\r\n        \"Address must be long enough to generate sufficient gradient colors.\"\r\n      );\r\n    }\r\n\r\n    // Generate an array of colors based on the seed array\r\n    return seedArr.map((seed) => {\r\n      let hash = 0;\r\n\r\n      // Create a hash from the seed string\r\n      for (let i = 0; i < seed.length; i++) {\r\n        hash = seed.charCodeAt(i) + ((hash << 5) - hash);\r\n        hash &= hash; // Convert to a 32-bit integer\r\n      }\r\n\r\n      // Generate RGB values from the hash\r\n      const rgb = Array.from({ length: 3 }, (_, i) => (hash >> (i * 8)) & 255);\r\n      return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;\r\n    });\r\n  }, [address]); // Dependencies array ensures the colors are recalculated only when the address changes\r\n}\r\n",
+      "type": "registry:hook",
+      "target": ""
+    }
+  ]
+}
