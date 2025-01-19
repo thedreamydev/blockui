@@ -58,7 +58,7 @@ export const components: Registry = [
     dependencies: ["lucide-react"],
     files: [
       {
-        path: "components/wallet-address-02.tsx",
+        path: "components/wallet-address-04.tsx",
         type: "registry:component",
       },
       {
