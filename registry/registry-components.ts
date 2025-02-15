@@ -71,4 +71,28 @@ export const components: Registry = [
       },
     ],
   },
+  {
+    name: "nft-card-01",
+    type: "registry:component",
+    registryDependencies: ["button", "card"],
+    dependencies: ["lucide-react"],
+    files: [
+      {
+        path: "components/nft-card-01.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "nft-card-02",
+    type: "registry:component",
+    registryDependencies: ["button", "card"],
+    dependencies: ["lucide-react"],
+    files: [
+      {
+        path: "components/nft-card-02.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];

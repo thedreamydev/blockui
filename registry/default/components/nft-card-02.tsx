@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import { ShoppingCart } from "lucide-react";
 
@@ -46,7 +45,7 @@ const NFTCard02 = () => {
           </div>
 
           {/* Current Bid */}
-          <div>
+          <div className="flex flex-col gap-1">
             <h1 className="text-lg font-bold text-card-foreground">1.17 ETH</h1>
             <p className="text-sm font-medium text-muted-foreground">
               Current Bid

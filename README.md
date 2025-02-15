@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BlockUI
+
+A collection of beautiful, functional, and interactive Web3 components built with Next.js, Tailwind CSS, and Shadcn/ui. Designed to help developers build dApps faster with ready-to-use components.
+
+![BlockUI Banner](public/og.png)
+
+## Features
+
+- 🎨 Modern, responsive Web3 components
+- 🌓 Dark/Light mode support
+- ⚡ Built with performance in mind
+- 🎯 Fully typed with TypeScript
+- 📦 Easy to integrate
+- 🔒 Secure by default
+- 🎪 Interactive previews
+- 📝 Comprehensive documentation
+
+## Tech Stack
+
+- [Next.js 15](https://nextjs.org/) - React Framework
+- [TypeScript](https://www.typescriptlang.org/) - Type Safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Shadcn/ui](https://ui.shadcn.com/) - Component System
+- [Radix UI](https://www.radix-ui.com/) - Accessible Components
 
 ## Getting Started
 
-First, run the development server:
+BlockUI is designed to integrate seamlessly with Next.js projects, but the components are also compatible with any React-based project. You can directly copy and use the components in your project or you can also add the components using the `shadcn` cli.
+
+Example -
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx shadcn@latest add https://blockui.xyz/r/wallet-address-01.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We welcome contributions to Block UI! Please read our [contributing guidelines](CONTRIBUTING.md) on how to submit improvements and new components.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Terms of Use
 
-## Learn More
+Feel free to use these components in personal and commercial projects. However, while the tutorials and demos are available for your use as-is, they cannot be redistributed or resold. Let’s keep things fair and respect each other’s work.
 
-To learn more about Next.js, take a look at the following resources:
+If you have any questions or just want to say hi, feel free to reach out to me on X 👉 [TheDreamyDev](https://x.com/thedreamydev).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is a work in progress, and we’re continuously working to improve and expand this collection. We’d love to hear your feedback or see your contributions as the project evolves!
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Made with ❤️ by [TheDreamyDev](https://x.com/intent/follow?screen_name=thedreamydev) for the Web3 Community.

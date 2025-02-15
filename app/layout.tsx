@@ -7,6 +7,8 @@ import Header from "@/components/header";
 import ThemeProvider from "@/components/theme-provider";
 import Illustration from "@/components/illustration";
 
+import { constructMetadata } from "@/lib/utils";
+
 const fontSans = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -19,11 +21,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export const metadata: Metadata = {
-  title: "Block UI - A Collection of functional, interactive web3 components",
-  description:
-    "Build dApps faster with ready-to-use Web3 components built using Shadcn/ui, Tailwind CSS, and Next.js. — just copy, paste, and integrate!",
-};
+export const metadata: Metadata = constructMetadata();
 
 export default function RootLayout({
   children,

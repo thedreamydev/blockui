@@ -1,0 +1,19 @@
+{
+  "name": "nft-card-01",
+  "type": "registry:component",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "card"
+  ],
+  "files": [
+    {
+      "path": "components/nft-card-01.tsx",
+      "content": "import Image from \"next/image\";\r\nimport { Heart } from \"lucide-react\";\r\n\r\nimport { Card } from \"@/components/ui/card\";\r\nimport { Button } from \"@/components/ui/button\";\r\n\r\nconst NFTCard01 = () => {\r\n  return (\r\n    <Card className=\"w-[300px] p-2 relative group\">\r\n      <div className=\"relative mb-3 w-[282px] h-[282px] rounded-lg overflow-hidden\">\r\n        {/* NFT Image */}\r\n        <Image\r\n          src=\"/images/nft-01.png\"\r\n          width={282}\r\n          height={282}\r\n          alt=\"NFT\"\r\n          className=\"w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110\"\r\n        />\r\n\r\n        {/* Add To Favorite Button */}\r\n        <Button size=\"icon\" className=\"absolute top-2 right-2 rounded-full\">\r\n          <Heart />\r\n        </Button>\r\n      </div>\r\n\r\n      <div className=\"px-2 mb-3 flex flex-col gap-2\">\r\n        <div className=\"flex justify-between items-center\">\r\n          <div className=\"flex flex-col gap-1\">\r\n            {/* NFT Title */}\r\n            <h1 className=\"text-lg font-bold text-card-foreground\">\r\n              Abstract #4192\r\n            </h1>\r\n\r\n            {/* NFT Owner */}\r\n            <p className=\"text-sm font-medium text-muted-foreground\">\r\n              By Shoaib Sayyed\r\n            </p>\r\n          </div>\r\n\r\n          {/* Avatar Group */}\r\n          <div className=\"flex h-8 flex-row-reverse\">\r\n            <Image\r\n              className=\"rounded-full z-10 -mr-2 ring-2 ring-background object-cover\"\r\n              src=\"/images/avatar-01.jpg\"\r\n              width={32}\r\n              height={32}\r\n              alt=\"Avatar 01\"\r\n            />\r\n            <Image\r\n              className=\"rounded-full z-10 -mr-3 ring-2 ring-background object-cover\"\r\n              src=\"/images/avatar-02.jpg\"\r\n              width={32}\r\n              height={32}\r\n              alt=\"Avatar 02\"\r\n            />\r\n            <Image\r\n              className=\"rounded-full z-10 -mr-3 ring-2 ring-background object-cover\"\r\n              src=\"/images/avatar-03.jpg\"\r\n              width={32}\r\n              height={32}\r\n              alt=\"Avatar 03\"\r\n            />\r\n            <Image\r\n              className=\"rounded-full z-10 -mr-3 ring-2 ring-background object-cover\"\r\n              src=\"/images/avatar-04.jpg\"\r\n              width={32}\r\n              height={32}\r\n              alt=\"Avatar 04\"\r\n            />\r\n          </div>\r\n        </div>\r\n        <div className=\"flex items-center justify-between\">\r\n          {/* Current Bid */}\r\n          <p className=\"text-sm font-bold  text-card-foreground\">\r\n            Current Bid: 0.91 <span>ETH</span>\r\n          </p>\r\n\r\n          {/* Place Bid Button */}\r\n          <Button>Place Bid</Button>\r\n        </div>\r\n      </div>\r\n    </Card>\r\n  );\r\n};\r\n\r\nexport default NFTCard01;\r\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ]
+}
