@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { Heart } from "lucide-react";
 
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const NFTCard01 = () => {
   return (
@@ -10,7 +10,7 @@ const NFTCard01 = () => {
       <div className="relative mb-3 w-[282px] h-[282px] rounded-lg overflow-hidden">
         {/* NFT Image */}
         <Image
-          src="/images/nft-01.png"
+          src="/images/nft-01.jpg"
           width={282}
           height={282}
           alt="NFT"
@@ -28,7 +28,7 @@ const NFTCard01 = () => {
           <div className="flex flex-col gap-1">
             {/* NFT Title */}
             <h1 className="text-lg font-bold text-card-foreground">
-              Abstract #4192
+              Ape #4192
             </h1>
 
             {/* NFT Owner */}

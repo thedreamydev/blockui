@@ -1,0 +1,20 @@
+{
+  "name": "nft-card-05",
+  "type": "registry:component",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "avatar",
+    "button",
+    "card"
+  ],
+  "files": [
+    {
+      "path": "components/nft-card-05.tsx",
+      "content": "import Image from \"next/image\";\r\nimport { Clock, DollarSign } from \"lucide-react\";\r\n\r\nimport { Avatar } from \"@/components/ui/avatar\";\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { Card } from \"@/components/ui/card\";\r\n\r\nconst NFTCard05 = () => {\r\n  return (\r\n    <Card className=\"overflow-hidden rounded-xl transition-all duration-300 hover:shadow-lg max-w-[300px] mx-auto w-full\">\r\n      <div className=\"relative aspect-square overflow-hidden\">\r\n        <Image\r\n          src=\"/images/nft-05.jpg\"\r\n          alt=\"NFT\"\r\n          fill\r\n          className=\"object-cover transition-transform duration-300 hover:scale-105\"\r\n        />\r\n        <div className=\"absolute bottom-3 left-3 rounded-lg bg-background/80 px-2 py-1 backdrop-blur-sm\">\r\n          <div className=\"flex items-center gap-1 text-sm font-medium\">\r\n            <DollarSign className=\"h-3.5 w-3.5\" />\r\n            <span>0.0025 ETH</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div className=\"p-4\">\r\n        <h3 className=\"text-lg font-semibold text-card-foreground\">\r\n          Grinch Ape\r\n        </h3>\r\n\r\n        <p className=\"mt-1 line-clamp-2 text-sm text-muted-foreground\">\r\n          Grumpies are a limited collection of 10 grumpy looking cute face with\r\n          different themes and colors.\r\n        </p>\r\n\r\n        <div className=\"mt-4 flex items-center justify-between\">\r\n          <div className=\"flex items-center gap-2\">\r\n            <Avatar className=\"h-8 w-8\">\r\n              <Image\r\n                src=\"/images/avatar-04.jpg\"\r\n                alt=\"Shoaib Sayyed\"\r\n                width={32}\r\n                height={32}\r\n                className=\"rounded-full object-cover\"\r\n              />\r\n            </Avatar>\r\n            <div>\r\n              <p className=\"text-xs text-muted-foreground\">Creator</p>\r\n              <p className=\"text-sm font-medium text-card-foreground\">\r\n                Shoaib Sayyed\r\n              </p>\r\n            </div>\r\n          </div>\r\n\r\n          <div className=\"text-right\">\r\n            <p className=\"text-xs text-muted-foreground\">Followers</p>\r\n            <p className=\"text-sm font-medium text-card-foreground\">2.2k</p>\r\n          </div>\r\n        </div>\r\n\r\n        <div className=\"mt-4 flex items-center justify-between\">\r\n          <div className=\"flex items-center gap-1 rounded-lg bg-gray-100 px-3 py-2\">\r\n            <Clock className=\"h-4 w-4 text-gray-600\" />\r\n            <span className=\"text-sm font-medium text-gray-700\">\r\n              3h 26m 45s\r\n            </span>\r\n          </div>\r\n\r\n          <Button className=\"ml-auto rounded-lg bg-pink-500 px-4 py-2 text-white hover:bg-pink-600\">\r\n            Place a Bid\r\n          </Button>\r\n        </div>\r\n      </div>\r\n    </Card>\r\n  );\r\n};\r\n\r\nexport default NFTCard05;\r\n",
+      "type": "registry:component",
+      "target": ""
+    }
+  ]
+}
