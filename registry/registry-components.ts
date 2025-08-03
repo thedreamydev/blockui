@@ -166,4 +166,16 @@ export const components: Registry = [
       },
     ],
   },
+  {
+    name: "token-selector-01",
+    type: "registry:component",
+    registryDependencies: ["dialog", "input", "scroll-area"],
+    dependencies: ["@web3icons/react", "lucide-react"],
+    files: [
+      {
+        path: "components/token-selector-01.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
