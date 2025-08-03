@@ -32,6 +32,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`bg-background overflow-x-hidden antialiased ${fontSans.className}`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"

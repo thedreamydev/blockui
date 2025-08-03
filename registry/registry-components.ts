@@ -142,4 +142,28 @@ export const components: Registry = [
       },
     ],
   },
+  {
+    name: "transaction-history-01",
+    type: "registry:component",
+    registryDependencies: [],
+    dependencies: ["@web3icons/react"],
+    files: [
+      {
+        path: "components/transaction-history-01.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
+  {
+    name: "transaction-history-02",
+    type: "registry:component",
+    registryDependencies: [],
+    dependencies: ["lucide-react"],
+    files: [
+      {
+        path: "components/transaction-history-02.tsx",
+        type: "registry:component",
+      },
+    ],
+  },
 ];
