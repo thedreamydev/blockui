@@ -111,7 +111,7 @@ const TokenSelectorModal = ({
             ))}
           </div>
 
-          <div className="px-5 py-2 flex items-center gap-2 text-base text-muted-foreground bg-background sticky top-0">
+          <div className="px-5 py-2 flex items-center gap-2 text-base text-muted-foreground bg-background sticky -top-px">
             <div className="flex-shrink-0">
               <TrendingUp className="size-4" />
             </div>
